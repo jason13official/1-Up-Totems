@@ -20,7 +20,7 @@ public abstract class ForgeEntityMixin implements IEntityDataSaver {
   private CompoundTag one_up_totems$persistentData;
 
   @Unique
-  public CompoundTag getOne_up_totems$persistentData() {
+  public CompoundTag one_up_totems$getPersistentData() {
     if (one_up_totems$persistentData == null) {
       one_up_totems$persistentData = new CompoundTag();
     }

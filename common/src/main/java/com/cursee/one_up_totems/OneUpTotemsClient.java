@@ -13,7 +13,7 @@ import net.minecraft.world.item.Items;
 
 public class OneUpTotemsClient {
 
-  public static final AtomicInteger LIVES_DISPLAY_INT = new AtomicInteger(9999);
+  public static final AtomicInteger LIVES_DISPLAY_INT = new AtomicInteger(0);
 
   private static final CachedSupplier<ItemStack> TOTEM_DISPLAY_STACK = CachedSupplier.singleton(new ItemStack(Items.TOTEM_OF_UNDYING));
 
