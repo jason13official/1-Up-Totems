@@ -1,4 +1,4 @@
-package com.example.examplemod.platform.services;
+package com.cursee.one_up_totems.platform.services;
 
 public interface IPlatformHelper {
 

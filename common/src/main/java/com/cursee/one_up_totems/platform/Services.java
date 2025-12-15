@@ -1,7 +1,8 @@
-package com.example.examplemod.platform;
+package com.cursee.one_up_totems.platform;
 
-import com.example.examplemod.Constants;
-import com.example.examplemod.platform.services.IPlatformHelper;
+import com.cursee.one_up_totems.Constants;
+import com.cursee.one_up_totems.OneUpTotems;
+import com.cursee.one_up_totems.platform.services.IPlatformHelper;
 
 import java.util.ServiceLoader;
 
@@ -24,7 +25,7 @@ public class Services {
         final T loadedService = ServiceLoader.load(clazz)
                 .findFirst()
                 .orElseThrow(() -> new NullPointerException("Failed to load service for " + clazz.getName()));
-        Constants.LOG.debug("Loaded {} for service {}", loadedService, clazz);
+        OneUpTotems.LOG.debug("Loaded {} for service {}", loadedService, clazz);
         return loadedService;
     }
 }
