@@ -9,6 +9,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.RenderGuiOverlayEvent;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.EntityJoinLevelEvent;
 import net.minecraftforge.eventbus.api.Event;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -28,7 +29,7 @@ public class OneUpTotemsForge {
 
     OneUpTotems.init();
 
-    eventBus.addListener((Consumer<EntityJoinLevelEvent>) event -> {
+    MinecraftForge.EVENT_BUS.addListener((Consumer<EntityJoinLevelEvent>) event -> {
       if (event.getLevel() instanceof ServerLevel && event.getEntity() instanceof ServerPlayer serverPlayer) {
 
         IEntityDataSaver saver = (IEntityDataSaver) serverPlayer;

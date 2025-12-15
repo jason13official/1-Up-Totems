@@ -5,6 +5,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraftforge.client.event.RenderGuiEvent;
+import net.minecraftforge.common.MinecraftForge;
 
 public class OneUpTotemsClientForge {
 
@@ -12,7 +13,7 @@ public class OneUpTotemsClientForge {
 
     OneUpTotemsClient.init();
 
-    OneUpTotemsForge.eventBus.addListener((Consumer<RenderGuiEvent.Pre>) event -> {
+    MinecraftForge.EVENT_BUS.addListener((Consumer<RenderGuiEvent.Pre>) event -> {
       GuiGraphics guiGraphics = event.getGuiGraphics();
       float partialTick = event.getPartialTick();
       LocalPlayer player = Minecraft.getInstance().player;

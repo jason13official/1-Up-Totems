@@ -4,7 +4,6 @@ import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.function.Consumer;
 import java.util.function.Supplier;
@@ -28,9 +27,8 @@ public class CachedSupplier<T> implements Supplier<T> {
   private boolean cached = false;
 
   /**
-   * The most recently cached value.
+   * The most recently cached value. May be `null`
    */
-  @Nullable
   private T cachedValue;
 
   protected CachedSupplier(Supplier<T> delegate) {
