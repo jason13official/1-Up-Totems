@@ -13,4 +13,7 @@ public class OUTConfig extends MidnightConfig {
 
   @Comment(name = "Modifies the amount of additional lives a new player starts with.")
   @Entry(category = SERVER, name = "Starting Extra Lives", min = 0) public static int startingLives = 3;
+
+  @Comment(name = "Determines whether to show additional lives counter.")
+  @Entry(category = CLIENT, name = "Display Extra Lives") public static boolean display = true;
 }

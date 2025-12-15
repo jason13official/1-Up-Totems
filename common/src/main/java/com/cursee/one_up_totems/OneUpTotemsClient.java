@@ -27,7 +27,7 @@ public class OneUpTotemsClient {
 
   public static void renderHUDOverlay(GuiGraphics guiGraphics, float partialTick, LocalPlayer localPlayer, boolean hideGui) {
 
-    if (hideGui) {
+    if (hideGui || !OUTConfig.display) {
       return;
     }
 
