@@ -2,6 +2,9 @@ package com.cursee.one_up_totems.platform;
 
 import com.cursee.one_up_totems.platform.services.IPlatformHelper;
 import net.fabricmc.loader.api.FabricLoader;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.world.item.Item.Properties;
+import net.minecraft.world.item.RecordItem;
 
 public class FabricPlatformHelper implements IPlatformHelper {
 
@@ -21,4 +24,9 @@ public class FabricPlatformHelper implements IPlatformHelper {
 
         return FabricLoader.getInstance().isDevelopmentEnvironment();
     }
+
+  @Override
+  public RecordItem createRecordItem(int analogOutput, SoundEvent sound, Properties properties, int lengthInSeconds) {
+    return new RecordItem(analogOutput, sound, properties, lengthInSeconds);
+  }
 }

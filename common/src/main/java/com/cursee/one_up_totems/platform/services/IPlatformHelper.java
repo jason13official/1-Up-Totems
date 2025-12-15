@@ -1,5 +1,9 @@
 package com.cursee.one_up_totems.platform.services;
 
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.RecordItem;
+
 public interface IPlatformHelper {
 
     /**
@@ -33,4 +37,6 @@ public interface IPlatformHelper {
 
         return isDevelopmentEnvironment() ? "development" : "production";
     }
+
+    RecordItem createRecordItem(int analogOutput, SoundEvent sound, Item.Properties properties, int lengthInSeconds);
 }
