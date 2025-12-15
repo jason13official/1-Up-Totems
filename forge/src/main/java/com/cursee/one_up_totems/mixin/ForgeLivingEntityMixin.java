@@ -9,7 +9,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(LivingEntity.class)
-public class FabricLivingEntityMixin {
+public class ForgeLivingEntityMixin {
 
   @Inject(at = @At("HEAD"), method = "checkTotemDeathProtection", cancellable = true)
   private void one_up_totems$checkTotemDeathProtection(DamageSource damageSource, CallbackInfoReturnable<Boolean> cir) {
