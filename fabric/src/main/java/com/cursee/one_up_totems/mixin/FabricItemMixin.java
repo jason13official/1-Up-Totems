@@ -1,12 +1,15 @@
 package com.cursee.one_up_totems.mixin;
 
 import com.cursee.one_up_totems.OUTConfig;
+import com.cursee.one_up_totems.OneUpTotems;
 import com.cursee.one_up_totems.api.common.util.IEntityDataSaver;
 import com.cursee.one_up_totems.impl.common.network.FabricModNetwork;
 import io.netty.buffer.Unpooled;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.player.Player;
@@ -45,6 +48,9 @@ public class FabricItemMixin {
       FriendlyByteBuf buf = new FriendlyByteBuf(Unpooled.buffer());
       buf.writeVarInt(saver.getLives());
       ServerPlayNetworking.send(serverPlayer, FabricModNetwork.LIFE_COUNT_SYNC, buf);
+
+      float mod = OneUpTotems.convertRangeFloat((float) saver.getLives() + 1, 0.0f, (float) OUTConfig.maxAdditionalLives, 0.0f, 0.5f);
+      level.playSound(null, player.blockPosition(), SoundEvents.ALLAY_ITEM_GIVEN, SoundSource.PLAYERS, 0.5f + mod, 0.5f + mod);
 
       cir.setReturnValue(InteractionResultHolder.success(stack));
     }

@@ -16,4 +16,13 @@ public class OUTConfig extends MidnightConfig {
 
   @Comment(name = "Determines whether to show additional lives counter.")
   @Entry(category = CLIENT, name = "Display Extra Lives") public static boolean display = true;
+
+  @Comment(name = "Modifies the horizontal offset of the display")
+  @Entry(category = CLIENT, name = "Extra Lives Horizontal Offset") public static int displayOffsetX = 0;
+
+  @Comment(name = "Modifies the vertical offset of the display.")
+  @Entry(category = CLIENT, name = "Extra Lives Vertical Offset") public static int displayOffsetY = 0;
+
+  @Comment(name = "Determines whether to color the text with a gradient (true) or remain white (false)")
+  @Entry(category = CLIENT, name = "Red to Green Text Color") public static boolean displayGradient = true;
 }

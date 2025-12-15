@@ -33,8 +33,8 @@ public class OneUpTotemsClient {
 
     int lives = LIVES_DISPLAY_INT.get();
 
-    guiGraphics.renderItem(TOTEM_DISPLAY_STACK.get(), 0, 0);
-    guiGraphics.drawString(Minecraft.getInstance().font, String.valueOf(lives), 16, 4, gradient[lives]);
+    guiGraphics.renderItem(TOTEM_DISPLAY_STACK.get(), 0 + OUTConfig.displayOffsetX, 0 + OUTConfig.displayOffsetY);
+    guiGraphics.drawString(Minecraft.getInstance().font, String.valueOf(lives), 16 + OUTConfig.displayOffsetX, 4 + OUTConfig.displayOffsetY, OUTConfig.displayGradient ? gradient[lives] : 0xFFFFFFFF);
   }
 
   private static int[] createColorGradient() {

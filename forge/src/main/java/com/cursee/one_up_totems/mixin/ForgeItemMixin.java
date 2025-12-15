@@ -1,12 +1,15 @@
 package com.cursee.one_up_totems.mixin;
 
 import com.cursee.one_up_totems.OUTConfig;
+import com.cursee.one_up_totems.OneUpTotems;
 import com.cursee.one_up_totems.api.common.util.IEntityDataSaver;
 import com.cursee.one_up_totems.impl.common.network.ForgeModNetwork;
 import com.cursee.one_up_totems.impl.common.network.ForgeModNetwork.ForgeLifeCountS2CPacket;
 import io.netty.buffer.Unpooled;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.player.Player;
@@ -45,6 +48,9 @@ public class ForgeItemMixin {
       FriendlyByteBuf buf = new FriendlyByteBuf(Unpooled.buffer());
       buf.writeVarInt(saver.getLives());
       ForgeModNetwork.sendToPlayer(serverPlayer, new ForgeLifeCountS2CPacket(buf));
+
+      float mod = OneUpTotems.convertRangeFloat((float) saver.getLives() + 1, 0.0f, (float) OUTConfig.maxAdditionalLives, 0.0f, 0.5f);
+      level.playSound(null, player.blockPosition(), SoundEvents.ALLAY_ITEM_GIVEN, SoundSource.PLAYERS, 0.5f + mod, 0.5f + mod);
 
       cir.setReturnValue(InteractionResultHolder.success(stack));
     }
