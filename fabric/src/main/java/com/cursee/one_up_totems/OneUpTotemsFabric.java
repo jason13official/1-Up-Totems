@@ -22,10 +22,21 @@ public class OneUpTotemsFabric implements ModInitializer {
 
         IEntityDataSaver saver = (IEntityDataSaver) serverPlayer;
 
+        if (!serverPlayer.getTags().contains(Constants.MOD_ID)) {
+
+          saver.increment();
+          saver.increment();
+          saver.increment(); // three lives, too lazy to make a method lol but that's what you start with
+
+          serverPlayer.addTag(Constants.MOD_ID);
+        }
+
         FriendlyByteBuf buf = new FriendlyByteBuf(Unpooled.buffer());
         buf.writeVarInt(saver.getLives());
 
         ServerPlayNetworking.send(serverPlayer, FabricModNetwork.LIFE_COUNT_SYNC, buf);
+
+        OneUpTotems.LOG.info("send display value to client");
       }
     });
   }

@@ -1,6 +1,7 @@
 package com.cursee.one_up_totems.impl.common.network;
 
 import com.cursee.one_up_totems.Constants;
+import com.cursee.one_up_totems.OneUpTotems;
 import com.cursee.one_up_totems.OneUpTotemsClient;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.fabric.api.networking.v1.PacketSender;
@@ -20,10 +21,13 @@ public class FabricModNetwork {
   public static class FabricLifeCountS2CPacket {
 
     public static void handle(Minecraft minecraft, ClientPacketListener clientPacketListener, FriendlyByteBuf friendlyByteBuf, PacketSender packetSender) {
-      Minecraft.getInstance().execute(() -> {
-        int lives = friendlyByteBuf.readVarInt();
-        OneUpTotemsClient.LIVES_DISPLAY_INT.set(lives);
-      });
+//      Minecraft.getInstance().execute(() -> {
+//        int lives = friendlyByteBuf.readVarInt();
+//        OneUpTotemsClient.LIVES_DISPLAY_INT.set(lives);
+//      });
+      int lives = friendlyByteBuf.readVarInt();
+      OneUpTotemsClient.LIVES_DISPLAY_INT.set(lives);
+      OneUpTotems.LOG.info("received display value on client");
     }
   }
 }

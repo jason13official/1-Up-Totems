@@ -1,6 +1,11 @@
 package com.cursee.one_up_totems.mixin;
 
 import com.cursee.one_up_totems.api.common.util.IEntityDataSaver;
+import com.cursee.one_up_totems.impl.common.network.FabricModNetwork;
+import io.netty.buffer.Unpooled;
+import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
+import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.player.Player;
@@ -19,6 +24,10 @@ public class FabricItemMixin {
   @Inject(at = @At("HEAD"), method = "use", cancellable = true)
   private void one_up_totems$use(Level level, Player player, InteractionHand usedHand, CallbackInfoReturnable<InteractionResultHolder<ItemStack>> cir) {
 
+    if (!(player instanceof ServerPlayer serverPlayer)) {
+      return;
+    }
+
     ItemStack stack = player.getItemInHand(usedHand);
 
     if (!stack.is(Items.TOTEM_OF_UNDYING)) {
@@ -31,6 +40,11 @@ public class FabricItemMixin {
       stack.shrink(1);
       player.setItemInHand(usedHand, stack);
       saver.increment();
+
+      FriendlyByteBuf buf = new FriendlyByteBuf(Unpooled.buffer());
+      buf.writeVarInt(saver.getLives());
+      ServerPlayNetworking.send(serverPlayer, FabricModNetwork.LIFE_COUNT_SYNC, buf);
+
       cir.setReturnValue(InteractionResultHolder.success(stack));
     }
   }

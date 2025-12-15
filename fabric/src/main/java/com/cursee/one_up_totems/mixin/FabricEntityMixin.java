@@ -27,6 +27,11 @@ public abstract class FabricEntityMixin implements IEntityDataSaver {
     return one_up_totems$persistentData;
   }
 
+  @Unique
+  public void one_up_totems$setPersistentData(CompoundTag compound) {
+    this.one_up_totems$persistentData = compound;
+  }
+
   @Inject(at = @At("TAIL"), method = "saveWithoutId")
   private void one_up_totems$saveWithoutId(CompoundTag compound, CallbackInfoReturnable<CompoundTag> cir) {
     if (one_up_totems$persistentData != null) {
