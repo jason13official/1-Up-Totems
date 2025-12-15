@@ -17,6 +17,9 @@
     "entrypoints": {
         "main": [
           "com.cursee.one_up_totems.OneUpTotemsFabric"
+        ],
+        "client": [
+          "com.cursee.one_up_totems.OneUpTotemsClientFabric"
         ]
     },
     "mixins": [
