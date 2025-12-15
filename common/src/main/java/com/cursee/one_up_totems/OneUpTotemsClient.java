@@ -39,13 +39,13 @@ public class OneUpTotemsClient {
 
   private static int[] createColorGradient() {
 
-    int[] colors = new int[256];
+    int[] colors = new int[OUTConfig.maxAdditionalLives];
 
     int startColor = 0xFFFF0000; // RED
     int endColor = 0xFF00FF00;   // GREEN
 
-    for (int i = 0; i < 256; i++) {
-      float delta = i / 255.0f;
+    for (int i = 0; i < OUTConfig.maxAdditionalLives; i++) {
+      float delta = i / ((float) OUTConfig.maxAdditionalLives);
       colors[i] = FastColor.ARGB32.lerp(delta, startColor, endColor);
     }
 

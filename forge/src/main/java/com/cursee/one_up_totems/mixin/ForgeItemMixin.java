@@ -1,5 +1,6 @@
 package com.cursee.one_up_totems.mixin;
 
+import com.cursee.one_up_totems.OUTConfig;
 import com.cursee.one_up_totems.api.common.util.IEntityDataSaver;
 import com.cursee.one_up_totems.impl.common.network.ForgeModNetwork;
 import com.cursee.one_up_totems.impl.common.network.ForgeModNetwork.ForgeLifeCountS2CPacket;
@@ -36,7 +37,7 @@ public class ForgeItemMixin {
 
     IEntityDataSaver saver = (IEntityDataSaver) player;
 
-    if (saver.getLives() < 255) {
+    if (saver.getLives() < OUTConfig.maxAdditionalLives) {
       stack.shrink(1);
       player.setItemInHand(usedHand, stack);
       saver.increment();
