@@ -33,6 +33,13 @@ public class OneUpTotemsForge {
 
         IEntityDataSaver saver = (IEntityDataSaver) serverPlayer;
 
+        if (!serverPlayer.getTags().contains(Constants.MOD_ID)) {
+
+          saver.addLives(OUTConfig.startingLives);
+
+          serverPlayer.addTag(Constants.MOD_ID);
+        }
+
         FriendlyByteBuf buffer = new FriendlyByteBuf(Unpooled.buffer());
         buffer.writeVarInt(saver.getLives());
 
