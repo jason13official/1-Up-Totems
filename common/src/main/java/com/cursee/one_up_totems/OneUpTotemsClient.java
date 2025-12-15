@@ -1,6 +1,7 @@
 package com.cursee.one_up_totems;
 
 import com.cursee.one_up_totems.impl.common.util.CachedSupplier;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Supplier;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
@@ -9,6 +10,8 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 
 public class OneUpTotemsClient {
+
+  public static final AtomicInteger LIVES_DISPLAY_INT = new AtomicInteger(9999);
 
   private static final CachedSupplier<ItemStack> TOTEM_DISPLAY_STACK = CachedSupplier.singleton(new ItemStack(Items.TOTEM_OF_UNDYING));
 
